@@ -12,7 +12,7 @@ const screenStyles = StyleSheet.create({
 
   title: {
     fontFamily: Fonts.FONT_FACE_TITLE,
-        fontSize: Fonts.FONT_SIZE_TITLE,
+    fontSize: Fonts.FONT_SIZE_TITLE,
     color: Colors.NAVY,
     textAlign: 'center',
     marginBottom: 10,

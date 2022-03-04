@@ -1,21 +1,35 @@
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, View, Text } from 'react-native';
 
 export const HomeScreen = () => {
-  const type = 'dark';
-  const title = 'Welcome to LifeApp!';
-  const description =
-    "We'll work alongside you to get the best insights, support and guidance through your journey.";
+  const [timesPressed, setTimesPressed] = useState(0);
+
+  let textLog = '';
+  if (timesPressed > 1) {
+    textLog = timesPressed + 'x onPress';
+  } else if (timesPressed > 0) {
+    textLog = 'onPress';
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* <Hero
-        type={type}
-        image={image}
-        title={title}
-        description={description}
-      /> */}
-      <View style={styles.content}>
-        <Text>Text Here</Text>
+      <Pressable
+        onPress={() => {
+          setTimesPressed(current => current + 1);
+        }}
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}
+      >
+        {({ pressed }) => (
+          <Text style={styles.text}>{pressed ? 'Pressed!' : 'Press Me'}</Text>
+        )}
+      </Pressable>
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_console">{textLog}</Text>
       </View>
     </ScrollView>
   );
@@ -23,10 +37,21 @@ export const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    //width: '100%',
+    flex: 1,
+    justifyContent: 'center',
   },
-  content: {
-    paddingHorizontal: Dimensions.SCAFFOLD_PADDING,
-    //width: '100%',
+  text: {
+    fontSize: 16,
+  },
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  logBox: {
+    padding: 20,
+    margin: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#f0f0f0',
+    backgroundColor: '#f9f9f9',
   },
 });

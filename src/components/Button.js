@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-export const Button = () => {
+export const Button = props => {
   const [timesPressed, setTimesPressed] = useState(0);
 
   let textLog = '';
@@ -11,10 +11,14 @@ export const Button = () => {
     textLog = 'onPress';
   }
 
+  const clickHandler = () => {
+    setTimesPressed(current => current + 1);
+  };
+
   return (
     <Pressable
       onPress={() => {
-        setTimesPressed(current => current + 1);
+        clickHandler();
       }}
       style={({ pressed }) => [
         {

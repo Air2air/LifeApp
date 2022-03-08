@@ -1,28 +1,96 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
-import { Button } from '../components/Button';
+import React, { useEffect, useState } from 'react';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
 
-export const HomeScreen = () => {
-  const [timesPressed, setTimesPressed] = useState(0);
+const HomeScreen = () => {
+  const [dataSource, setDataSource] = useState(LEVEL_1);
 
-  let textLog = '';
-  if (timesPressed > 1) {
-    textLog = timesPressed + 'x onPress';
-  } else if (timesPressed > 0) {
-    textLog = 'onPress';
-  }
+  const renderItem = ({ item }) => <Item name={item.name} />;
+
+  const Item = ({ name }) => (
+    <View style={styles.item}>
+      <Text style={styles.name}>{name}</Text>
+    </View>
+  );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Button />
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={dataSource}
+        renderItem={renderItem}
+        keyExtractor={item => item.name}
+      />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'space-evenly',
+    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#f9c2ff',
+  },
+  item: {
+    padding: 20,
+  },
+  name: {
+    fontSize: 32,
   },
 });
+
+export default HomeScreen;
+
+const LEVEL_1 = [
+  {
+    name: 'Modernism',
+    members: 1452,
+  },
+  {
+    name: 'Surfing',
+    members: 51453,
+  },
+  {
+    name: 'Data Science',
+    members: 3297,
+  },
+  {
+    name: 'Alfa Romeo',
+    members: 7845,
+  },
+  {
+    name: 'Hamburgers',
+    members: 54252,
+  },
+];
+
+const LEVEL_2 = [
+  {
+    name: 'Alfa Romeo',
+    members: 7845,
+  },
+  {
+    name: 'Hamburgers',
+    members: 54252,
+  },
+  {
+    name: 'Modernism',
+    members: 1452,
+  },
+  {
+    name: 'Surfing',
+    members: 51453,
+  },
+  {
+    name: 'Data Science',
+    members: 3297,
+  },
+];

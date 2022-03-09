@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { ListItem } from '../components/ListItem';
 
 function Screen3({ navigation }) {
-  const nextScreen = 'Screen4';
+  const nextScreen = 'Screen1';
   const data = [
     {
       id: 0,
@@ -39,34 +39,22 @@ function Screen3({ navigation }) {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView
-        style={[styles.container, { backgroundColor: generateColor() }]}
-      >
-        <FlatList
-          style={styles.flatlist}
-          data={data}
-          renderItem={({ item }) => (
-            <ListItem
-              name={item.name}
-              members={item.members.toLocaleString()}
-              linkTo={nextScreen}
-              navigation={navigation}
-            />
-          )}
-          keyExtractor={(item, index) => index}
-        />
-      </SafeAreaView>
+      <FlatList
+        style={styles.flatlist}
+        data={data}
+        renderItem={({ item }) => (
+          <ListItem
+            name={item.name}
+            members={item.members.toLocaleString()}
+            linkTo={nextScreen}
+            navigation={navigation}
+          />
+        )}s
+        keyExtractor={(item, index) => index}
+      />
     </>
   );
 }
-
-const generateColor = () => {
-  const randomColor = Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, '0');
-  return `#${randomColor}`;
-};
 
 const styles = StyleSheet.create({
   container: {

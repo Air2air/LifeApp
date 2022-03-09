@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     marginLeft: marginX,
     marginRight: marginX,
     marginTop: marginY,
+    backgroundColor: '#0000',
   },
   name: {
     fontFamily: 'Inter_300Light',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     lineHeight: pillHeight,
     fontFamily: 'Inter_500Medium',
     color: '#FFF',
-    backgroundColor: '#00000022',
+    backgroundColor: '#0002',
     borderRadius: pillHeight / 2,
     overflow: 'hidden',
     paddingLeft: 10,

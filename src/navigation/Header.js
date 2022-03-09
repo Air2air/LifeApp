@@ -35,7 +35,7 @@ export const Header = () => {
           accessibilityHint="Click to go to the Home screen"
           activeOpacity={0.5}
           style={styles.logoTrio}
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('Screen1')}
         >
           <LogoTrio style={styles.logoImage} />
         </PressableOpacity>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -7,13 +7,25 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Routes } from './navigation/Routes';
 import { Footer } from './navigation/Footer';
 import AppLoading from 'expo-app-loading';
+// import { Context } from './state/context';
+//import { screenBackgroundColor } from './utilities/screenBackgroundColor';
 import {
   useFonts,
   Inter_300Light,
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
 
+const BgColorContext = createContext('green');
+
 export default function App() {
+  const [backgroundColor, setBackgroundColor] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setBackgroundColor('blue');
+    }, 2000);
+  }, []);
+
   let [fontsLoaded] = useFonts({
     Inter_300Light,
     Inter_500Medium,
@@ -23,28 +35,27 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <><StatusBar style="light" />
-        <SafeAreaView
-          style={[styles.container, { backgroundColor: generateColor() }]}
-        >
-          <SafeAreaProvider>
-            <NavigationContainer>
-              <Routes />
-              <Footer />
-            </NavigationContainer>
-          </SafeAreaProvider>
-        </SafeAreaView>
+      <>
+        <BgColorContext.Provider value={backgroundColor}>
+          <StatusBar style="light" />
+          <SafeAreaView
+            style={[
+              styles.container,
+              { backgroundColor: backgroundColor },
+            ]}
+          >
+            <SafeAreaProvider>
+              <NavigationContainer>
+                <Routes />
+                <Footer />
+              </NavigationContainer>
+            </SafeAreaProvider>
+          </SafeAreaView>
+        </BgColorContext.Provider>
       </>
     );
   }
 }
-
-const generateColor = () => {
-  const randomColor = Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, '0');
-  return `#${randomColor}`;
-};
 
 const styles = StyleSheet.create({
   container: {

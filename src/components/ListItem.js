@@ -9,6 +9,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -27,24 +28,14 @@ export const ListItem = props => {
   };
 
   return (
-    <Pressable
-      onPress={() => {
-        clickHandler();
-      }}
-      style={({ pressed }) => [
-        {
-          backgroundColor: pressed ? 'rgba(255, 255, 255, 0.2)' : 'none',
-        },
-        styles.container,
-      ]}
-    >
+    <TouchableOpacity style={styles.container}>
       <Text style={styles.name}>{props.name}</Text>
       <Text style={styles.members}>{props.members}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
-const numListItems = 6.8;
+const numListItems = 9;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const marginX = windowWidth / 40;
@@ -70,7 +61,9 @@ const styles = StyleSheet.create({
     marginTop: marginY,
   },
   name: {
-    fontSize: 24,
+    fontFamily: 'Inter_300Light',
+    color: '#FFFFFF',
+    fontSize: 28,
   },
   members: {
     width: 'auto',
@@ -78,10 +71,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: pillHeight,
+    fontFamily: 'Inter_500Medium',
     color: '#FFF',
-    backgroundColor: '#00000055',
+    backgroundColor: '#00000022',
     borderRadius: pillHeight / 2,
     overflow: 'hidden',
     paddingLeft: 10,

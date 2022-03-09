@@ -49,8 +49,11 @@ const HomeScreen = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: generateColor() }]}
+      >
         <FlatList
+          style={styles.flatlist}
           data={data}
           renderItem={({ item }) => (
             <ListItem name={item.name} members={item.members} />
@@ -62,14 +65,23 @@ const HomeScreen = () => {
   );
 };
 
+const generateColor = () => {
+  const randomColor = Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, '0');
+  return `#${randomColor}`;
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'column',
-    // justifyContent: 'space-evenly',
-    marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: '#f9c2ff',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+
   },
+flatlist: {
+  marginTop: '15%',}
 });
 
 export default HomeScreen;

@@ -1,36 +1,14 @@
 import React, { useState } from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  SectionList,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export const ListItem = props => {
-  const [timesPressed, setTimesPressed] = useState(0);
-
-  let textLog = '';
-  if (timesPressed > 1) {
-    textLog = timesPressed + 'x onPress';
-  } else if (timesPressed > 0) {
-    textLog = 'onPress';
-  }
-
-  const clickHandler = () => {
-    setTimesPressed(current => current + 1);
-  };
-
+export const ListItem = ({ navigation, linkTo, name, members }) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Text style={styles.name}>{props.name}</Text>
-      <Text style={styles.members}>{props.members}</Text>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate(linkTo)}
+    >
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.members}>{members}</Text>
     </TouchableOpacity>
   );
 };

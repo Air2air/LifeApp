@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  SectionList,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from 'react';
+import { FlatList, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { ListItem } from '../components/ListItem';
 
-const HomeScreen = () => {
+function HomeScreen({ navigation }) {
+  const nextScreen = 'Screen2';
   const data = [
     {
       id: 0,
@@ -46,6 +36,7 @@ const HomeScreen = () => {
       members: 19538,
     },
   ];
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -56,14 +47,19 @@ const HomeScreen = () => {
           style={styles.flatlist}
           data={data}
           renderItem={({ item }) => (
-            <ListItem name={item.name} members={item.members} />
+            <ListItem
+              name={item.name}
+              members={item.members.toLocaleString()}
+              linkTo={nextScreen}
+              navigation={navigation}
+            />
           )}
           keyExtractor={(item, index) => index}
         />
       </SafeAreaView>
     </>
   );
-};
+}
 
 const generateColor = () => {
   const randomColor = Math.floor(Math.random() * 16777215)
@@ -78,10 +74,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-
   },
-flatlist: {
-  marginTop: '15%',}
+  flatlist: {
+    marginTop: '15%',
+  },
 });
 
 export default HomeScreen;

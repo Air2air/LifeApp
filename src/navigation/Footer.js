@@ -19,8 +19,7 @@ export const Footer = () => {
         <Pressable
           key={item.id}
           accessible={true}
-          accessibilityLabel="Home"
-          accessibilityHint="Click to go to the Home screen"
+          accessibilityLabel={item.name}
           onPress={() => [
             setSelected(item.id),
             navigation.navigate(item.linkTo),
@@ -28,23 +27,9 @@ export const Footer = () => {
           style={styles.iconButton}
         >
           {selected === item.id ? (
-            <>
-              <Feather name={item.icon} size={24} color="black" />
-              <Text
-                style={[styles.label, { backgroundColor: iconColorSelected }]}
-              >
-                {item.name}
-              </Text>
-            </>
+            <Feather name={item.icon} size={34} color={iconColorSelected} />
           ) : (
-            <>
-              <Feather name={item.icon} size={24} color="black" />
-              <Text
-                style={[styles.label, { backgroundColor: iconColorDefault }]}
-              >
-                {item.name}
-              </Text>
-            </>
+            <Feather name={item.icon} size={34} color={iconColorDefault} />
           )}
         </Pressable>
       ))}
@@ -52,9 +37,9 @@ export const Footer = () => {
   );
 };
 
-const FOOTER_HEIGHT = 80;
-const iconColorDefault = '#fff';
-const iconColorSelected = '#000';
+const FOOTER_HEIGHT = 60;
+const iconColorDefault = '#fff7';
+const iconColorSelected = '#fff';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,18 +53,13 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     height: FOOTER_HEIGHT,
     width: 100,
     //backgroundColor: 'gold',
   },
-  icon: {
-    height: 22,
-    width: 24,
-    //backgroundColor: 'lightblue',
-  },
+
   label: {
     marginTop: 5,
     alignItems: 'center',

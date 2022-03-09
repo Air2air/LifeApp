@@ -1,5 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,7 +23,7 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <>
+      <><StatusBar style="light" />
         <SafeAreaView
           style={[styles.container, { backgroundColor: generateColor() }]}
         >

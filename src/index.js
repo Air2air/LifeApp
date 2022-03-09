@@ -1,28 +1,25 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Routes } from './navigation/Routes';
 import { Footer } from './navigation/Footer';
 import AppLoading from 'expo-app-loading';
-// import { Context } from './state/context';
-//import { screenBackgroundColor } from './utilities/screenBackgroundColor';
+import { generatedBgColor } from './utilities/generatedBgColor';
 import {
   useFonts,
   Inter_300Light,
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
 
-const BgColorContext = createContext('green');
-
 export default function App() {
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [bgColor, setBgColor] = useState(generatedBgColor);
 
   useEffect(() => {
     setTimeout(() => {
-      setBackgroundColor('blue');
+      setBgColor(generatedBgColor);
     }, 2000);
   }, []);
 
@@ -36,22 +33,15 @@ export default function App() {
   } else {
     return (
       <>
-        <BgColorContext.Provider value={backgroundColor}>
-          <StatusBar style="light" />
-          <SafeAreaView
-            style={[
-              styles.container,
-              { backgroundColor: backgroundColor },
-            ]}
-          >
-            <SafeAreaProvider>
-              <NavigationContainer>
-                <Routes />
-                <Footer />
-              </NavigationContainer>
-            </SafeAreaProvider>
-          </SafeAreaView>
-        </BgColorContext.Provider>
+        <StatusBar style="light" />
+        <SafeAreaView style={[styles.container, { backgroundColor: bgColor }]}>
+          {/* <SafeAreaProvider> */}
+          <NavigationContainer bgColor={bgColor}>
+            <Routes />
+            <Footer />
+          </NavigationContainer>
+          {/* </SafeAreaProvider> */}
+        </SafeAreaView>
       </>
     );
   }

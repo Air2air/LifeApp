@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export const ListItem = ({ navigation, linkTo, name, members }) => {
+export const ListItem = ({ navigation, linkTo, name, members, bgColor }) => {
+  const clickHandler = () => {
+    navigation.navigate(linkTo);
+  };
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate(linkTo)}
-    >
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.members}>{members}</Text>
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        style={[styles.container, { backgroundColor: bgColor }]}
+        onPress={() => clickHandler()}
+      >
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.members}>{members}</Text>
+      </TouchableOpacity>
+    </>
   );
 };
 
@@ -37,7 +43,6 @@ const styles = StyleSheet.create({
     marginLeft: marginX,
     marginRight: marginX,
     marginTop: marginY,
-    backgroundColor: '#0000',
   },
   name: {
     fontFamily: 'Inter_300Light',

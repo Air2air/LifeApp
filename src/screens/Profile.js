@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+// import { View } from 'react-native-animatable';
 import { ListItem } from '../components/ListItem';
 
-function Profile({ navigation }) {
+function Profile(props) {
   const userData = [
     {
       profile: {
@@ -48,19 +49,25 @@ function Profile({ navigation }) {
 
   return (
     <>
-    <Text>Profile</Text>
       <FlatList
-        style={styles.flatlist}
-        data={userData.interests}
+        data={userData}
+        renderItem={({ item }) => <Text>{item.profile.handle}</Text>}
+        keyExtractor={item => item.profile.id}
+      />
+
+      <FlatList
+        data={userData}
         renderItem={({ item }) => (
           <ListItem
-            name={item.name}
-            members={item.members.toLocaleString()}
-            linkTo={nextScreen}
-            navigation={navigation}
+            navigation={props.navigation}
+            linkTo="Profile"
+            name={item.profile.handle}
+            members={item.profile.nameFirst}
+            interests={item.profile.interests}
+            bgColor={'#F5F5F5'}
           />
         )}
-        keyExtractor={(item, index) => index}
+        keyExtractor={item => item.profile.id}
       />
     </>
   );

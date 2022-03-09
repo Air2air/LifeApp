@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "name": "Modernism",
+    "members": 1452
+  },
+  {
+    "id": 1,
+    "name": "Surfing",
+    "members": 51453
+  },
+  {
+    "id": 2,
+    "name": "Data Science",
+    "members": 3297
+  },
+  {
+    "id": 3,
+    "name": "Alfa Romeo",
+    "members": 7845
+  },
+  {
+    "id": 4,
+    "name": "Hamburgers",
+    "members": 54252
+  }
+]

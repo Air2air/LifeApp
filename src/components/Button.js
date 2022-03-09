@@ -24,7 +24,7 @@ export const Button = props => {
         {
           backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
         },
-        styles.buttonWrapper,
+        styles.wrapper,
       ]}
     >
       {({ pressed }) => (
@@ -36,18 +36,26 @@ export const Button = props => {
   );
 };
 
-const buttonSize = 64;
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const listItemHeight = windowHeight / 5.4;
 
 const styles = StyleSheet.create({
-  buttonWrapper: {
-    height: buttonSize,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    padding: 20,
+  container: {
+    flex: 1,
+    // flexDirection: 'column',
+    alignItems: 'stretch',
+    // justifyContent: 'space-evenly',
+    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#f9c2ff',
   },
-  text: {
-    fontSize: 16,
+  listitem: {
+    height: listItemHeight,
+    margin: 5,
+    backgroundColor: 'gold',
+  },
+  member: {
+    fontSize: 32,
   },
 });

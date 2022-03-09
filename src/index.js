@@ -12,7 +12,6 @@ export default function App() {
         <SafeAreaProvider>
           <NavigationContainer>
             <Main />
-            {/* <Footer /> */}
           </NavigationContainer>
         </SafeAreaProvider>
       </SafeAreaView>

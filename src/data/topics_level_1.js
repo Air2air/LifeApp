@@ -1,4 +1,4 @@
-export const Level_1 = [
+export const topics_level_1 = [
   {
     id: 0,
     name: 'Modernism',

@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
     height: FOOTER_HEIGHT,
     width: '100%',
     //backgroundColor: 'red',
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
   iconButton: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     height: FOOTER_HEIGHT,
     width: 100,
     //backgroundColor: 'gold',

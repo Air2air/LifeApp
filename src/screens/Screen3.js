@@ -5,8 +5,19 @@ import { ListItem } from '../components/ListItem';
 
 function Screen3({ navigation }) {
   const bgColor = useContext(BgColorContext);
+
   const nextScreen = 'Screen1';
   const data = [
+    {
+      id: 2,
+      name: 'Eichler Homes',
+      members: 3297,
+    },
+    {
+      id: 3,
+      name: 'Case Study Houses',
+      members: 7845,
+    },
     {
       id: 0,
       name: 'Modernism',
@@ -14,27 +25,18 @@ function Screen3({ navigation }) {
     },
     {
       id: 1,
-      name: 'Surfing',
+      name: 'Post-modernism',
       members: 31453,
     },
-    {
-      id: 2,
-      name: 'Data Science',
-      members: 3297,
-    },
-    {
-      id: 3,
-      name: 'Alfa Romeo',
-      members: 7845,
-    },
+
     {
       id: 4,
-      name: 'Volkswagen Beetle',
+      name: 'Le Corbusier ',
       members: 54252,
     },
     {
       id: 5,
-      name: 'French Bulldogs',
+      name: 'Corgis',
       members: 19538,
     },
   ];
@@ -63,4 +65,5 @@ const styles = StyleSheet.create({
     // marginTop: '15%',
   },
 });
+
 export default Screen3;

@@ -1,95 +1,68 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { PressableOpacity } from 'react-native-pressable-opacity';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from '@react-navigation/native';
-import { Avatar } from '../components/Avatar';
 import { FontAwesome } from '@expo/vector-icons';
-import LogoTrio from '../../assets/images/js/logo_trio';
-import '../constants';
+import { Feather } from '@expo/vector-icons';
 
-export const Header = () => {
-  const { colors } = useTheme();
+export const Header = ({ route }) => {
+  const handleBack = () => {
+    navigation.goBack();
+  };
+
   const navigation = useNavigation();
+
   return (
     <>
-      <View
-        style={[styles.container, { backgroundColor: colors.headerFooter }]}
-      >
+      <View style={styles.container}>
         <PressableOpacity
           accessible={true}
           accessibilityLabel="Go Back"
-          accessibilityHint="Click to go to the previous screen"
           activeOpacity={0.5}
           style={styles.backButtonWrapper}
-          onPress={() => navigation.goBack()}
+          onPress={() => {
+            handleBack;
+          }}
         >
+         <Text>{route} Route </Text>
           <FontAwesome
             size={30}
             name="chevron-left"
-            style={[styles.backButton, { color: Colors.LOGO_BLUE }]}
+            style={styles.backButton}
           />
-        </PressableOpacity>
-        <PressableOpacity
-          accessible={true}
-          accessibilityLabel="Home"
-          accessibilityHint="Click to go to the Home screen"
-          activeOpacity={0.5}
-          style={styles.logoTrio}
-          onPress={() => navigation.navigate('Screen1')}
-        >
-          <LogoTrio style={styles.logoImage} />
-        </PressableOpacity>
-        <PressableOpacity
-          accessible={true}
-          accessibilityLabel="My Profile"
-          accessibilityHint="Click to go to my user profile"
-          activeOpacity={0.5}
-          style={styles.avatarWrapper}
-          onPress={() => navigation.navigate('ProfileScreen')}
-        >
-          <Avatar />
         </PressableOpacity>
       </View>
     </>
   );
 };
 
+const headerHeight = 60;
+
 const styles = StyleSheet.create({
   container: {
+    height: headerHeight,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: Dimensions.HEADER_HEIGHT,
     width: '100%',
     padding: 0,
   },
   backButtonWrapper: {
+    height: headerHeight,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    //height: Dimensions.HEADER_HEIGHT,
     width: 100,
     //backgroundColor: '#ffcc00',
   },
-  logoTrio: {
+  logo: {
+    height: headerHeight,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 10,
-    height: Dimensions.HEADER_HEIGHT,
     width: 80,
     //backgroundColor: 'gold',
-  },
-  avatarWrapper: {
-    //display: 'flex',
-    //flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    //height: Dimensions.HEADER_HEIGHT,
-    width: 100,
-    //backgroundColor: '#ffcc00',
   },
 });

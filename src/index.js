@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Routes } from './navigation/Routes';
+import { Header } from './navigation/Header';
 import { Footer } from './navigation/Footer';
 import AppLoading from 'expo-app-loading';
 import { generatedBgColor } from './utilities/generatedBgColor';
@@ -14,7 +15,7 @@ import {
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
 
-export const BgColorContext = createContext()
+export const BgColorContext = createContext();
 
 export default function App() {
   const [bgColor, setBgColor] = useState(generatedBgColor);
@@ -42,6 +43,7 @@ export default function App() {
           >
             <SafeAreaProvider>
               <NavigationContainer bgColor={bgColor}>
+                {/* <Header /> */}
                 <Routes />
                 <Footer />
               </NavigationContainer>

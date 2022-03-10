@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
- marginRight: 14,
+    marginRight: 14,
     height: textItemHeight,
     fontFamily: 'Inter_500Medium',
     textTransform: 'uppercase',

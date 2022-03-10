@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { BgColorContext } from '..';
 import { TextItem } from '../components/TextItem';
-import { ListItem } from '../components/ListItem';
+
 
 function Profile(props) {
   const bgColor = useContext(BgColorContext);

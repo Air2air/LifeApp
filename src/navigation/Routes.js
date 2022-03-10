@@ -12,7 +12,7 @@ export const Routes = () => (
     initialRouteName="Screen1"
     screenOptions={{ headerShown: false }}
   >
-    <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Screen name="Profile" component={Profile} bgColor='red' />
     <Stack.Screen name="Settings" component={Settings} />
     <Stack.Screen name="Screen1" component={Screen1} />
     <Stack.Screen name="Screen2" component={Screen2} />

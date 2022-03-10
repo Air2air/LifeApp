@@ -1,8 +1,11 @@
-import React from 'react';
-import { FlatList, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { useContext } from 'react';
+import { FlatList, StyleSheet } from 'react-native';
+import { BgColorContext } from '..';
 import { ListItem } from '../components/ListItem';
 
 function Screen2({ navigation }) {
+  const bgColor = useContext(BgColorContext);
+
   const nextScreen = 'Screen3';
   const data = [
     {
@@ -41,7 +44,6 @@ function Screen2({ navigation }) {
   return (
     <>
       <FlatList
-        style={styles.flatlist}
         data={data}
         renderItem={({ item }) => (
           <ListItem
@@ -51,6 +53,7 @@ function Screen2({ navigation }) {
             navigation={navigation}
           />
         )}
+        style={[styles.flatlist, { backgroundColor: bgColor }]}
         keyExtractor={(item, index) => index}
       />
     </>
@@ -58,14 +61,8 @@ function Screen2({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
   flatlist: {
-    marginTop: '15%',
+    // marginTop: '15%',
   },
 });
 

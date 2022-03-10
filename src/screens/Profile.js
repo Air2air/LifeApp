@@ -1,9 +1,12 @@
-import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-// import { View } from 'react-native-animatable';
+import { useContext } from 'react';
+import { FlatList, StyleSheet } from 'react-native';
+import { BgColorContext } from '..';
+import { TextItem } from '../components/TextItem';
 import { ListItem } from '../components/ListItem';
 
 function Profile(props) {
+  const bgColor = useContext(BgColorContext);
+
   const userData = [
     {
       profile: {
@@ -11,6 +14,7 @@ function Profile(props) {
         handle: 'DoodlePants',
         nameFirst: 'Camille',
         nameLast: 'Dunning',
+        email: 'silly@silly.com',
         interests: [
           {
             id: 4523,
@@ -51,22 +55,16 @@ function Profile(props) {
     <>
       <FlatList
         data={userData}
-        renderItem={({ item }) => <Text>{item.profile.handle}</Text>}
-        keyExtractor={item => item.profile.id}
-      />
-
-      <FlatList
-        data={userData}
         renderItem={({ item }) => (
-          <ListItem
-            navigation={props.navigation}
-            linkTo="Profile"
-            name={item.profile.handle}
-            members={item.profile.nameFirst}
-            interests={item.profile.interests}
-            bgColor={'#F5F5F5'}
-          />
+          <>
+            <TextItem label="Handle" value={item.profile.handle} />
+            <TextItem label="First" value={item.profile.nameFirst} />
+            <TextItem label="Last" value={item.profile.nameLast} />
+            <TextItem label="Email" value={item.profile.email} />
+          </>
         )}
+        contentContainerstyle={styles.container}
+        style={{ backgroundColor: bgColor }}
         keyExtractor={item => item.profile.id}
       />
     </>
@@ -79,9 +77,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  flatlist: {
-    marginTop: '15%',
+    color: '#fff',
   },
 });
 

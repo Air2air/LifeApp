@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext, useContext } from 'react';
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -13,6 +13,8 @@ import {
   Inter_300Light,
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
+
+export const BgColorContext = createContext()
 
 export default function App() {
   const [bgColor, setBgColor] = useState(generatedBgColor);
@@ -33,15 +35,19 @@ export default function App() {
   } else {
     return (
       <>
-        <StatusBar style="light" />
-        <SafeAreaView style={[styles.container, { backgroundColor: bgColor }]}>
-          {/* <SafeAreaProvider> */}
-          <NavigationContainer bgColor={bgColor}>
-            <Routes />
-            <Footer />
-          </NavigationContainer>
-          {/* </SafeAreaProvider> */}
-        </SafeAreaView>
+        <BgColorContext.Provider value={bgColor}>
+          <StatusBar style="light" />
+          <SafeAreaView
+            style={[styles.container, { backgroundColor: bgColor }]}
+          >
+            <SafeAreaProvider>
+              <NavigationContainer bgColor={bgColor}>
+                <Routes />
+                <Footer />
+              </NavigationContainer>
+            </SafeAreaProvider>
+          </SafeAreaView>
+        </BgColorContext.Provider>
       </>
     );
   }
